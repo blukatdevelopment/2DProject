@@ -1,0 +1,6 @@
+/home/blukat/localdev/2DProject/Godot/.mono/temp/obj/Debug/Godot.csprojResolveAssemblyReference.cache
+/home/blukat/localdev/2DProject/Godot/.mono/temp/obj/Debug/Godot.csproj.CoreCompileInputs.cache
+/home/blukat/localdev/2DProject/Godot/.mono/temp/bin/Debug/Godot.dll
+/home/blukat/localdev/2DProject/Godot/.mono/temp/bin/Debug/Godot.pdb
+/home/blukat/localdev/2DProject/Godot/.mono/temp/obj/Debug/Godot.dll
+/home/blukat/localdev/2DProject/Godot/.mono/temp/obj/Debug/Godot.pdb
