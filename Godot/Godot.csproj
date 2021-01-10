@@ -58,6 +58,7 @@
   </ItemGroup>
     <ItemGroup>
     <Compile Include="src/Actor/Actor.cs" />
+    <Compile Include="src/Actor/EnemyActor.cs" />
     <Compile Include="src/Actor/PlayerActor.cs" />
     <Compile Include="src/Constants/ActorConstants.cs" />
     <Compile Include="src/Constants/InputConstants.cs" />

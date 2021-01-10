@@ -33,9 +33,12 @@ namespace Global {
 
     private void StartNewGame()
     {
-      Actor actor = new PlayerActor();
-      state.AddActor(actor);
-      this.AddChild(actor);
+      Actor player = new PlayerActor(new Vector2(10f, 10f));
+      state.AddActor(player);
+      this.AddChild(player);
+
+      Actor enemy = new EnemyActor(new Vector2(300f, 300f));
+      this.AddChild(enemy);
     }
   }
 }

@@ -9,7 +9,7 @@ namespace Actor
   {
     Vector2 movement;
 
-    public PlayerActor() : base()
+    public PlayerActor(Vector2 position) : base(position, true)
     {
       movement = new Vector2();
     }
@@ -47,7 +47,16 @@ namespace Actor
 
     public override void PostEventsUpdate()
     {
-      Position += movement;
+      Move(movement);
+    }
+
+    public override void OnCollide(KinematicCollision2D collision)
+    {
+      EnemyActor enemy = collision.Collider as EnemyActor;
+      if(enemy != null)
+      {
+        enemy.QueueFree();
+      }
     }
   }
 }

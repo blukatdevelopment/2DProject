@@ -5,23 +5,36 @@ namespace Actor
   using Constants;
   using Input;
 
-  public class Actor : Node2D, IActionSubscriber
+  public class Actor : KinematicBody2D, IActionSubscriber
   {
-    private Sprite sprite;
-    private Camera2D camera;
-    private List<ActionEvent> actionEventsQueue;
-    private float delay;
+    protected Sprite sprite;
+    protected Camera2D camera;
+    protected List<ActionEvent> actionEventsQueue;
+    protected float delay;
+    protected CollisionShape2D collider;
 
-
-    public Actor()
+    public Actor(Vector2 position, bool enableCamera = false)
     {
+      this.Position = position;
+
+      if(enableCamera)
+      {
+        camera = new Camera2D();
+        camera.Current = true;
+        this.AddChild(camera);
+      }
+
+      sprite = new Sprite();
+      Texture texture = ResourceLoader.Load(ActorConstants.ActorTexture) as Texture;
+      SetSpriteTexture(texture, new Vector2(ActorConstants.DefaultWidth, ActorConstants.DefaultHeight));
+      this.AddChild(sprite);
+
       delay = 0f;
       actionEventsQueue = new List<ActionEvent>();
-      sprite = new Sprite();
-      sprite.Texture = ResourceLoader.Load(ActorConstants.ActorTexture) as Texture;
-      camera = new Camera2D();
-      this.AddChild(sprite);
-      this.AddChild(camera);
+      collider = new CollisionShape2D();
+      collider.Shape = ActorConstants.DefaultShape();
+      this.AddChild(collider);
+
     }
 
     public void QueueActions(List<ActionEvent> actionEvents)
@@ -53,9 +66,26 @@ namespace Actor
     {
     }
 
-    private void Move(float x, float y)
+    public virtual void OnCollide(KinematicCollision2D collision)
     {
-      GlobalPosition += new Vector2(x * ActorConstants.MovementSpeed, y * ActorConstants.MovementSpeed);
+
+    }
+
+    protected void SetSpriteTexture(Texture texture, Vector2 size)
+    {
+      Vector2 textureSize = texture.GetSize();
+      Vector2 scale = size/textureSize;
+      sprite.Texture = texture;
+      sprite.Scale = scale;
+    }
+
+    protected void Move(Vector2 movement)
+    {
+      KinematicCollision2D collision = MoveAndCollide(movement);
+      if(collision != null && collision.Collider != null)
+      {
+        OnCollide(collision);
+      }
     }
   }
 }
