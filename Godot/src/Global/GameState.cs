@@ -4,29 +4,15 @@ namespace Global {
   using Input;
   using System.Collections.Generic;
 
-  // Yup, it's a moodel that holds game state.
+  /*
+    Yup, it's a model that holds shared data used by the Game class.
+    Only this object should need to be persisted for a particular
+    session to be persisted.
+    If a particular game needs a ton more granular data, an object
+    containing that data can be added inside here to contain it.
+  */
   public class GameState : Node2D
   {
-    public List<Actor> actors;
-    public InputState inputState;
-
-    public GameState()
-    {
-      actors = new List<Actor>();
-      inputState = new InputState();
-      AddChild(inputState);
-    }
-
-    public void AddActor(Actor actor)
-    {
-      actors.Add(actor);
-      inputState.Subscribe(actor);
-    }
-
-    public void RemoveActor(Actor actor)
-    {
-      actors.Remove(actor);
-      inputState.Unsubscribe(actor);
-    }
+    public int lives;
   }
 }

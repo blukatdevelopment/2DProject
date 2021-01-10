@@ -4,6 +4,7 @@ namespace Actor
   using Godot;
   using Constants;
   using Input;
+  using Enums;
 
   public class Actor : KinematicBody2D, IActionSubscriber
   {
@@ -12,6 +13,7 @@ namespace Actor
     protected List<ActionEvent> actionEventsQueue;
     protected float delay;
     protected CollisionShape2D collider;
+    protected Vector2 movement;
 
     public Actor(Vector2 position, bool enableCamera = false)
     {
@@ -64,11 +66,42 @@ namespace Actor
 
     public virtual void PostEventsUpdate()
     {
+      Move(movement);
     }
 
     public virtual void OnCollide(KinematicCollision2D collision)
     {
+    }
 
+    protected void HandleMovement(ActionEvent actionEvent)
+    {
+     switch(actionEvent.action)
+      {
+        case ActionEnum.MoveUpStart:
+          movement += new Vector2(0f, -ActorConstants.MovementSpeed);
+        break;
+        case ActionEnum.MoveUpEnd:
+          movement += new Vector2(0f, ActorConstants.MovementSpeed);
+        break;
+        case ActionEnum.MoveDownStart:
+          movement += new Vector2(0f, ActorConstants.MovementSpeed);
+        break;
+        case ActionEnum.MoveDownEnd:
+          movement += new Vector2(0f, -ActorConstants.MovementSpeed);
+        break;
+        case ActionEnum.MoveRightStart:
+          movement += new Vector2(ActorConstants.MovementSpeed, 0f);
+        break;
+        case ActionEnum.MoveRightEnd:
+          movement += new Vector2(-ActorConstants.MovementSpeed, 0f);
+        break;
+        case ActionEnum.MoveLeftStart:
+          movement += new Vector2(-ActorConstants.MovementSpeed, 0f);
+        break;
+        case ActionEnum.MoveLeftEnd:
+          movement += new Vector2(ActorConstants.MovementSpeed, 0f);
+        break;
+      } 
     }
 
     protected void SetSpriteTexture(Texture texture, Vector2 size)

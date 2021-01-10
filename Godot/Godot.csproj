@@ -58,18 +58,21 @@
   </ItemGroup>
     <ItemGroup>
     <Compile Include="src/Actor/Actor.cs" />
-    <Compile Include="src/Actor/EnemyActor.cs" />
     <Compile Include="src/Actor/PlayerActor.cs" />
     <Compile Include="src/Constants/ActorConstants.cs" />
+    <Compile Include="src/Constants/GameConstants.cs" />
     <Compile Include="src/Constants/InputConstants.cs" />
     <Compile Include="src/Enums/ActionEnum.cs" />
+    <Compile Include="src/Enums/GameTypeEnum.cs" />
     <Compile Include="src/Enums/InputModeEnum.cs" />
+    <Compile Include="src/Global/Game.cs" />
     <Compile Include="src/Global/GameState.cs" />
     <Compile Include="src/Global/Session.cs" />
     <Compile Include="src/Input/ActionEvent.cs" />
     <Compile Include="src/Input/IActionSubscriber.cs" />
     <Compile Include="src/Input/InputState.cs" />
     <Compile Include="src/Input/KeyMapping.cs" />
+    <Compile Include="src/Shooter/ShooterGame.cs" />
     <Compile Include="Properties/AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -4,19 +4,25 @@
 namespace Global {
   using Godot;
   using Actor;
+  using Enums;
+  using Constants;
+  using System.Collections.Generic;
+
   public class Session : Node2D
   {
     // Is that a naive singleton? You can bet your britches it is!
     public static Session session;
     public GameState state;
+    public Dictionary<GameTypeEnum, Game> games;
 
     public override void _Ready()
     {
       EnforceSingleton();
+      games = new Dictionary<GameTypeEnum, Game>();
       state = new GameState();
       AddChild(state);
       GD.Print("Session initialized");
-      StartNewGame();
+      StartNewGame(GameTypeEnum.Shooter);
     }
 
     private void EnforceSingleton()
@@ -31,14 +37,18 @@ namespace Global {
       }
     }
 
-    private void StartNewGame()
+    public void StartNewGame(GameTypeEnum gameType)
     {
-      Actor player = new PlayerActor(new Vector2(10f, 10f));
-      state.AddActor(player);
-      this.AddChild(player);
+      if(games.ContainsKey(gameType))
+      {
+        games[gameType].End();
+        games[gameType].QueueFree();
+        games.Remove(gameType);
+      }
 
-      Actor enemy = new EnemyActor(new Vector2(300f, 300f));
-      this.AddChild(enemy);
+      games[gameType] = GameConstants.NewGameByType(gameType, state);
+      AddChild(games[gameType]);
+      games[gameType].Start();
     }
   }
 }

@@ -7,17 +7,24 @@ namespace Input
 
   public class InputState : Node2D
   {
-    List<IActionSubscriber> subscribers;
-    List<KeyMapping> keyMappings;
+    private List<IActionSubscriber> subscribers;
+    private List<KeyMapping> keyMappings;
+    private bool paused;
 
-    public InputState()
+    public InputState(bool paused = false)
     {
+      this.paused = paused;
       keyMappings = InputConstants.GetKeyMappings();
       subscribers = new List<IActionSubscriber>();
     }
 
     public override void _Process(float delta)
     {
+      if(paused)
+      {
+        return;
+      }
+
       List<ActionEvent> actionEvents = new List<ActionEvent>();
       foreach(KeyMapping keyMapping in keyMappings)
       {
@@ -28,6 +35,16 @@ namespace Input
       {
         subscriber.QueueActions(actionEvents);
       }
+    }
+
+    public void Pause()
+    {
+      paused = true;
+    }
+
+    public void Resume()
+    {
+      paused = false;
     }
 
     public void Subscribe(IActionSubscriber subscriber)
