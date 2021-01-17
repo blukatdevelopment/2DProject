@@ -58,7 +58,6 @@
   </ItemGroup>
     <ItemGroup>
     <Compile Include="src/Actor/Actor.cs" />
-    <Compile Include="src/Actor/PlayerActor.cs" />
     <Compile Include="src/Constants/ActorConstants.cs" />
     <Compile Include="src/Constants/GameConstants.cs" />
     <Compile Include="src/Constants/InputConstants.cs" />
@@ -72,6 +71,9 @@
     <Compile Include="src/Input/IActionSubscriber.cs" />
     <Compile Include="src/Input/InputState.cs" />
     <Compile Include="src/Input/KeyMapping.cs" />
+    <Compile Include="src/Shooter/Projectile.cs" />
+    <Compile Include="src/Shooter/Ship.cs" />
+    <Compile Include="src/Shooter/ShooterConstants.cs" />
     <Compile Include="src/Shooter/ShooterGame.cs" />
     <Compile Include="Properties/AssemblyInfo.cs" />
   </ItemGroup>

@@ -11,13 +11,13 @@ namespace Global
   public class Game : Node2D
   {
     protected GameState state;
-    protected List<Actor> actors;
+    protected List<Actor> players;
     protected InputState inputState;
 
     public Game(GameState state)
     {
       this.state = state;
-      actors = new List<Actor>();
+      players = new List<Actor>();
       inputState = new InputState();
       AddChild(inputState);
     }
@@ -40,15 +40,15 @@ namespace Global
     {
     }
 
-    public void AddActor(Actor actor)
+    public void AddPlayer(Actor actor)
     {
-      actors.Add(actor);
+      players.Add(actor);
       inputState.Subscribe(actor);
     }
 
-    public void RemoveActor(Actor actor)
+    public void RemovePlayer(Actor actor)
     {
-      actors.Remove(actor);
+      players.Remove(actor);
       inputState.Unsubscribe(actor);
     }
 

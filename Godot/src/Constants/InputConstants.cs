@@ -20,7 +20,9 @@ namespace Constants
         new KeyMapping((int)KeyList.Right, InputModeEnum.PressStart, ActionEnum.MoveRightStart),
         new KeyMapping((int)KeyList.Right, InputModeEnum.PressEnd, ActionEnum.MoveRightEnd),
         new KeyMapping((int)KeyList.Left, InputModeEnum.PressStart, ActionEnum.MoveLeftStart),
-        new KeyMapping((int)KeyList.Left, InputModeEnum.PressEnd, ActionEnum.MoveLeftEnd)
+        new KeyMapping((int)KeyList.Left, InputModeEnum.PressEnd, ActionEnum.MoveLeftEnd),
+        new KeyMapping((int)KeyList.Space, InputModeEnum.PressStart, ActionEnum.FireStart),
+        new KeyMapping((int)KeyList.Space, InputModeEnum.PressEnd, ActionEnum.FireEnd),
       };
     }
   }

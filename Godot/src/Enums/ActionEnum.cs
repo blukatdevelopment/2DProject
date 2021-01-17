@@ -9,6 +9,8 @@ namespace Enums
     MoveRightStart,
     MoveRightEnd,
     MoveLeftStart,
-    MoveLeftEnd
+    MoveLeftEnd,
+    FireStart,
+    FireEnd
   }
 }

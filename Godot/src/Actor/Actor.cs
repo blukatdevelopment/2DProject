@@ -15,6 +15,10 @@ namespace Actor
     protected CollisionShape2D collider;
     protected Vector2 movement;
 
+    public Actor()
+    {
+    }
+
     public Actor(Vector2 position, bool enableCamera = false)
     {
       this.Position = position;
@@ -101,7 +105,7 @@ namespace Actor
         case ActionEnum.MoveLeftEnd:
           movement += new Vector2(ActorConstants.MovementSpeed, 0f);
         break;
-      } 
+      }
     }
 
     protected void SetSpriteTexture(Texture texture, Vector2 size)
