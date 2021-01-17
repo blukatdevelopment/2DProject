@@ -14,6 +14,7 @@ namespace Actor
     protected float delay;
     protected CollisionShape2D collider;
     protected Vector2 movement;
+    protected float movementSpeed;
 
     public Actor()
     {
@@ -22,6 +23,7 @@ namespace Actor
     public Actor(Vector2 position, bool enableCamera = false)
     {
       this.Position = position;
+      this.movementSpeed = ActorConstants.MovementSpeed;
 
       if(enableCamera)
       {
@@ -82,28 +84,28 @@ namespace Actor
      switch(actionEvent.action)
       {
         case ActionEnum.MoveUpStart:
-          movement += new Vector2(0f, -ActorConstants.MovementSpeed);
+          movement += new Vector2(0f, -movementSpeed);
         break;
         case ActionEnum.MoveUpEnd:
-          movement += new Vector2(0f, ActorConstants.MovementSpeed);
+          movement += new Vector2(0f, movementSpeed);
         break;
         case ActionEnum.MoveDownStart:
-          movement += new Vector2(0f, ActorConstants.MovementSpeed);
+          movement += new Vector2(0f, movementSpeed);
         break;
         case ActionEnum.MoveDownEnd:
-          movement += new Vector2(0f, -ActorConstants.MovementSpeed);
+          movement += new Vector2(0f, -movementSpeed);
         break;
         case ActionEnum.MoveRightStart:
-          movement += new Vector2(ActorConstants.MovementSpeed, 0f);
+          movement += new Vector2(movementSpeed, 0f);
         break;
         case ActionEnum.MoveRightEnd:
-          movement += new Vector2(-ActorConstants.MovementSpeed, 0f);
+          movement += new Vector2(-movementSpeed, 0f);
         break;
         case ActionEnum.MoveLeftStart:
-          movement += new Vector2(-ActorConstants.MovementSpeed, 0f);
+          movement += new Vector2(-movementSpeed, 0f);
         break;
         case ActionEnum.MoveLeftEnd:
-          movement += new Vector2(ActorConstants.MovementSpeed, 0f);
+          movement += new Vector2(movementSpeed, 0f);
         break;
       }
     }

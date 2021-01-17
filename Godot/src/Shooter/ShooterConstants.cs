@@ -3,10 +3,24 @@ namespace Shooter
   using Godot;
   using Input;
   using Enums;
+  using Constants;
   using System.Collections.Generic;
 
   public class ShooterConstants
   {
+    public const float ProjectileSpeed = 75f;
+    public const float ShipSpeed = 25f;
+
+    public static Vector2 VerticalBoundarySize()
+    {
+      return new Vector2(50f, GameConstants.GameResolution().y);
+    }
+
+    public static Vector2 HorizontalBoundarySize()
+    {
+      return new Vector2(GameConstants.GameResolution().x, 50f);
+    }
+
     public static RectangleShape2D ShipShape()
     {
       RectangleShape2D shape = new RectangleShape2D();

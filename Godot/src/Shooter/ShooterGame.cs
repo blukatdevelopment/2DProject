@@ -34,9 +34,50 @@ namespace Shooter
       
       InitCamera();
 
+      InitBoundaries();
+
       SpawnPlayer();
 
       SpawnEnemyWave();
+    }
+
+    private void InitBoundaries()
+    {
+      Vector2 resolution = GameConstants.GameResolution();
+      Vector2 verticalSize = ShooterConstants.VerticalBoundarySize();
+      Vector2 horizontalSize = ShooterConstants.HorizontalBoundarySize();
+      
+      KinematicBody2D leftBoundary = CreateBoundary(
+        new Vector2(verticalSize.x/-2f, resolution.y/2f),
+        verticalSize);
+      AddChild(leftBoundary);
+
+      KinematicBody2D rightBoundary = CreateBoundary(
+        new Vector2(verticalSize.x/2f + resolution.x, resolution.y/2f),
+        verticalSize);
+      AddChild(rightBoundary);
+
+      KinematicBody2D topBoundary = CreateBoundary(
+        new Vector2(resolution.x/2f, horizontalSize.y/-2f),
+        horizontalSize);
+      AddChild(topBoundary);
+
+      KinematicBody2D bottomBoundary = CreateBoundary(
+        new Vector2(resolution.x/2f, resolution.y + horizontalSize.y/2f),
+        horizontalSize);
+      AddChild(bottomBoundary);
+    }
+
+    private KinematicBody2D CreateBoundary(Vector2 position, Vector2 size)
+    {
+      KinematicBody2D boundary = new KinematicBody2D();
+      CollisionShape2D collider = new CollisionShape2D();
+      RectangleShape2D shape = new RectangleShape2D();
+      shape.Extents = size/2f;
+      collider.Shape = shape;
+      boundary.AddChild(collider);
+      boundary.Position = position;
+      return boundary;
     }
 
     private void SpawnPlayer()

@@ -15,6 +15,7 @@ namespace Shooter
 
     public Ship(Vector2 position, bool enableCamera, Vector2 fireDirection, ShooterGame game)
     {
+      this.movementSpeed = ShooterConstants.ShipSpeed;
       this.fireDirection = fireDirection;
       this.game = game;
 

@@ -14,6 +14,7 @@ namespace Shooter
     public Projectile(Vector2 position, Vector2 direction, ShooterGame game)
     {
       this.movement = direction;
+      this.movementSpeed = ShooterConstants.ProjectileSpeed;
       this.game = game;
       this.Position = position;
       Vector2 size = ShooterConstants.ProjectileSize();
@@ -43,8 +44,8 @@ namespace Shooter
       if(ship != null)
       {
         game.ImpactShip(ship);
-        this.QueueFree();
       }
+      this.QueueFree();
     }
   }
 }
