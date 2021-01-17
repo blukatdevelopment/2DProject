@@ -11,6 +11,11 @@ namespace Input
     private List<KeyMapping> keyMappings;
     private bool paused;
 
+    public InputState()
+    {
+      this.keyMappings = new List<KeyMapping>();
+    }
+
     public InputState(List<KeyMapping> keyMappings)
     {
       this.paused = false;

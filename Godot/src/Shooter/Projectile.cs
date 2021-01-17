@@ -43,6 +43,7 @@ namespace Shooter
       if(ship != null)
       {
         game.ImpactShip(ship);
+        this.QueueFree();
       }
     }
   }

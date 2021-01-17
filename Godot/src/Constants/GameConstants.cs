@@ -26,5 +26,10 @@ namespace Constants
           return null;
       }
     }
+
+    public static Vector2 GameResolution()
+    {
+      return new Vector2(1920f, 1080f);
+    }
   }
 }

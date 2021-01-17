@@ -7,19 +7,31 @@ namespace Shooter
 
   public class ShooterConstants
   {
-    public static Vector2 Up()
+    public static RectangleShape2D ShipShape()
     {
-      return new Vector2(0f, -10f);
+      RectangleShape2D shape = new RectangleShape2D();
+      shape.Extents = ShipSize()/2f;
+      return shape;
     }
 
-    public static Vector2 Down()
+    public static Vector2 ShipSize()
     {
-      return new Vector2(0f, 10f);
+      return new Vector2(50f, 50f);
     }
 
     public static Vector2 ProjectileSize()
     {
       return new Vector2(10f, 10f);
+    }
+
+    public static Vector2 Up()
+    {
+      return new Vector2(0f, -50f);
+    }
+
+    public static Vector2 Down()
+    {
+      return new Vector2(0f, 50f);
     }
 
     public static List<KeyMapping> PlayerControls()
