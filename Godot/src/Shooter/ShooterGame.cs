@@ -3,6 +3,8 @@ namespace Shooter
   using Global;
   using Godot;
   using Actor;
+  using Input;
+  using System.Collections.Generic;
 
   /*
     Enemies move downward from the top of the screen.
@@ -12,8 +14,12 @@ namespace Shooter
   {
     private int score = 0;
 
-    public ShooterGame(GameState state) : base(state)
+    public ShooterGame(GameState state)
     {
+      this.gameState = state;
+      players = new List<Actor>();
+      this.inputState = new InputState(ShooterConstants.PlayerControls());
+      AddChild(this.inputState);
     }
 
     public override void Start()

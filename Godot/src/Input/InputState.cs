@@ -11,10 +11,10 @@ namespace Input
     private List<KeyMapping> keyMappings;
     private bool paused;
 
-    public InputState(bool paused = false)
+    public InputState(List<KeyMapping> keyMappings)
     {
-      this.paused = paused;
-      keyMappings = InputConstants.GetKeyMappings();
+      this.paused = false;
+      this.keyMappings = keyMappings;
       subscribers = new List<IActionSubscriber>();
     }
 

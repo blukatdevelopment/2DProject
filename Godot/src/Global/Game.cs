@@ -10,15 +10,20 @@ namespace Global
   */
   public class Game : Node2D
   {
-    protected GameState state;
+
+    protected GameState gameState;
     protected List<Actor> players;
     protected InputState inputState;
 
-    public Game(GameState state)
+    public Game()
     {
-      this.state = state;
+    }
+
+    public Game(GameState gameState, InputState inputState)
+    {
+      this.gameState = gameState;
       players = new List<Actor>();
-      inputState = new InputState();
+      this.inputState = inputState;
       AddChild(inputState);
     }
 

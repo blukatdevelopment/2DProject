@@ -9,7 +9,7 @@ namespace Constants
   {
     public const float LongPressDuration = 0.5f;
 
-    public static List<KeyMapping> GetKeyMappings()
+    public static List<KeyMapping> DefaultKeyMappings()
     {
       return new List<KeyMapping>
       {
