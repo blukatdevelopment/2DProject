@@ -4,6 +4,7 @@ namespace Shooter
   using Godot;
   using Actor;
   using Input;
+  using Dialogue;
   using System.Collections.Generic;
   using Constants;
 
@@ -15,6 +16,9 @@ namespace Shooter
   {
     private int score = 0;
     private Camera2D camera;
+    private EnemyAI enemyAI;
+    private float timeSinceAIUpdate = 0f;
+    private EnemySpawner spawner;
 
     public ShooterGame()
     {
@@ -26,19 +30,37 @@ namespace Shooter
       players = new List<Actor>();
       this.inputState = new InputState(ShooterConstants.PlayerControls());
       AddChild(this.inputState);
+      this.spawner = new EnemySpawner(this);
+      AddChild(this.spawner);
     }
 
     public override void Start()
     {
       GD.Print("Shooter game started");
       
+      enemyAI = new EnemyAI(GetWorld2d());
+
       InitCamera();
 
       InitBoundaries();
 
       SpawnPlayer();
 
-      SpawnEnemyWave();
+      this.spawner.StartWave(ShooterConstants.EnemiesInWave);
+    }
+
+    public override void Pause()
+    {
+      inputState.Pause();
+      spawner.Pause();
+      enemyAI.Pause();
+    }
+
+    public override void Resume()
+    {
+      inputState.Resume();
+      spawner.Resume();
+      enemyAI.Resume();
     }
 
     private void InitBoundaries()
@@ -89,19 +111,11 @@ namespace Shooter
       this.AddChild(player);
     }
 
-    private void SpawnEnemyWave()
+    public void SpawnEnemy(Vector2 position)
     {
-      Vector2 max = GameConstants.GameResolution();
-      Vector2 shipSize = ShooterConstants.ShipSize();
-      for(float screenPosX = shipSize.x; screenPosX < max.x; screenPosX += shipSize.x * 2f)
-      {
-        for(float screenPosY = shipSize.y; screenPosY < max.y/5f; screenPosY += shipSize.y * 2f)
-        {
-          GD.Print("Placing enemy at " + screenPosX + "," + screenPosY);
-          Actor enemy = new Ship(new Vector2(screenPosX, screenPosY), false, ShooterConstants.Down(), this);
-          this.AddChild(enemy);
-        }
-      }
+      Actor enemy = new Ship(position, false, ShooterConstants.Down(), this);
+      enemyAI.AddEnemy(enemy as Ship);
+      this.AddChild(enemy);
     }
 
     private void InitCamera()
@@ -115,6 +129,15 @@ namespace Shooter
       AddChild(camera);
     }
 
+    public override void _Process(float delta)
+    {
+      timeSinceAIUpdate += delta;
+      if(timeSinceAIUpdate >= ShooterConstants.AIUpdateDelay)
+      {
+        enemyAI.Update();
+      }
+    }
+
     public void CreateProjectile(Vector2 position, Vector2 direction)
     {
       Actor projectile =  new Projectile(position, direction, this);
@@ -124,6 +147,7 @@ namespace Shooter
     public void ImpactShip(Ship ship)
     {
       RemovePlayer(ship);
+      enemyAI.RemoveEnemy(ship);
       ship.QueueFree();
       if(players.Count == 0)
       {
@@ -131,6 +155,7 @@ namespace Shooter
       }
       else
       {
+        Session.session.Dialogue(DialogueConstants.DebugDialogueTree());
         score++;
       }
     }

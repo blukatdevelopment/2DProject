@@ -13,8 +13,9 @@ namespace Actor
     protected List<ActionEvent> actionEventsQueue;
     protected float delay;
     protected CollisionShape2D collider;
-    protected Vector2 movement;
-    protected float movementSpeed;
+    protected bool paused;
+    public Vector2 movement;
+    public float movementSpeed;
 
     public Actor()
     {
@@ -72,7 +73,21 @@ namespace Actor
 
     public virtual void PostEventsUpdate()
     {
-      Move(movement);
+      if(!paused)
+      {
+        Move(movement);
+      }
+    }
+
+    public void Pause()
+    {
+      paused = true;
+      GD.Print("Actor paused");
+    }
+
+    public void Resume()
+    {
+      paused = false;
     }
 
     public virtual void OnCollide(KinematicCollision2D collision)
@@ -84,28 +99,28 @@ namespace Actor
      switch(actionEvent.action)
       {
         case ActionEnum.MoveUpStart:
-          movement += new Vector2(0f, -movementSpeed);
+          movement = new Vector2(movement.x, -movementSpeed);
         break;
         case ActionEnum.MoveUpEnd:
-          movement += new Vector2(0f, movementSpeed);
+          movement = new Vector2(movement.x, 0f);
         break;
         case ActionEnum.MoveDownStart:
-          movement += new Vector2(0f, movementSpeed);
+          movement = new Vector2(movement.x, movementSpeed);
         break;
         case ActionEnum.MoveDownEnd:
-          movement += new Vector2(0f, -movementSpeed);
+          movement = new Vector2(movement.x, 0f);
         break;
         case ActionEnum.MoveRightStart:
-          movement += new Vector2(movementSpeed, 0f);
+          movement = new Vector2(movementSpeed, movement.y);
         break;
         case ActionEnum.MoveRightEnd:
-          movement += new Vector2(-movementSpeed, 0f);
+          movement = new Vector2(0f, movement.y);
         break;
         case ActionEnum.MoveLeftStart:
-          movement += new Vector2(-movementSpeed, 0f);
+          movement = new Vector2(-movementSpeed, movement.y);
         break;
         case ActionEnum.MoveLeftEnd:
-          movement += new Vector2(movementSpeed, 0f);
+          movement = new Vector2(0f, movement.y);
         break;
       }
     }

@@ -3,6 +3,7 @@ namespace Global {
   using Actor;
   using Input;
   using System.Collections.Generic;
+  using Dialogue;
 
   /*
     Yup, it's a model that holds shared data used by the Game class.
@@ -13,6 +14,6 @@ namespace Global {
   */
   public class GameState : Node2D
   {
-    public int lives;
+    public int lives = 1;
   }
 }

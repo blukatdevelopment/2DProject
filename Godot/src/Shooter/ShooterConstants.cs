@@ -8,8 +8,13 @@ namespace Shooter
 
   public class ShooterConstants
   {
+    public const float AIUpdateDelay = 0.1f;
     public const float ProjectileSpeed = 75f;
     public const float ShipSpeed = 25f;
+    public const float AIDescentIncrement = 100f;
+    public const float MaxEnemySpawnTime = 3f;
+    // FIXME: Read this from gamestate or something
+    public const int EnemiesInWave = 5;
 
     public static Vector2 VerticalBoundarySize()
     {

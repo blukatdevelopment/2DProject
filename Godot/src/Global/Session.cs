@@ -6,6 +6,7 @@ namespace Global {
   using Actor;
   using Enums;
   using Constants;
+  using Dialogue;
   using System.Collections.Generic;
 
   public class Session : Node2D
@@ -14,14 +15,20 @@ namespace Global {
     public static Session session;
     public GameState state;
     public Dictionary<GameTypeEnum, Game> games;
+    public GameTypeEnum activeGame;
+    public DialogueManager dialogue;
 
     public override void _Ready()
     {
       EnforceSingleton();
+
       games = new Dictionary<GameTypeEnum, Game>();
       state = new GameState();
       AddChild(state);
-      GD.Print("Session initialized");
+
+      dialogue = new DialogueManager();
+      AddChild(dialogue);
+      
       StartNewGame(GameTypeEnum.Shooter);
     }
 
@@ -37,6 +44,16 @@ namespace Global {
       }
     }
 
+    public void Dialogue(DialogueTree tree)
+    {
+      dialogue.Activate(tree);
+    }
+
+    public void SelectOption(int option)
+    {
+      dialogue.SelectOption(option);
+    }
+
     public void StartNewGame(GameTypeEnum gameType)
     {
       if(games.ContainsKey(gameType))
@@ -49,6 +66,23 @@ namespace Global {
       games[gameType] = GameConstants.NewGameByType(gameType, state);
       AddChild(games[gameType]);
       games[gameType].Start();
+      activeGame = gameType;
+    }
+
+    public void Pause()
+    {
+      if(games.ContainsKey(activeGame))
+      {
+        games[activeGame].Pause();
+      }
+    }
+
+    public void Resume()
+    {
+      if(games.ContainsKey(activeGame))
+      {
+        games[activeGame].Resume();
+      }
     }
   }
 }

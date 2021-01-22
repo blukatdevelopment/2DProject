@@ -59,8 +59,14 @@
     <ItemGroup>
     <Compile Include="src/Actor/Actor.cs" />
     <Compile Include="src/Constants/ActorConstants.cs" />
+    <Compile Include="src/Constants/DialogueConstants.cs" />
     <Compile Include="src/Constants/GameConstants.cs" />
     <Compile Include="src/Constants/InputConstants.cs" />
+    <Compile Include="src/Dialogue/DialogueManager.cs" />
+    <Compile Include="src/Dialogue/DialogueMessage.cs" />
+    <Compile Include="src/Dialogue/DialogueNode.cs" />
+    <Compile Include="src/Dialogue/DialogueOption.cs" />
+    <Compile Include="src/Dialogue/DialogueTree.cs" />
     <Compile Include="src/Enums/ActionEnum.cs" />
     <Compile Include="src/Enums/GameTypeEnum.cs" />
     <Compile Include="src/Enums/InputModeEnum.cs" />
@@ -71,6 +77,8 @@
     <Compile Include="src/Input/IActionSubscriber.cs" />
     <Compile Include="src/Input/InputState.cs" />
     <Compile Include="src/Input/KeyMapping.cs" />
+    <Compile Include="src/Shooter/EnemyAI.cs" />
+    <Compile Include="src/Shooter/EnemySpawner.cs" />
     <Compile Include="src/Shooter/Projectile.cs" />
     <Compile Include="src/Shooter/Ship.cs" />
     <Compile Include="src/Shooter/ShooterConstants.cs" />

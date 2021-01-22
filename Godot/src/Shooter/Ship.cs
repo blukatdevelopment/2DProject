@@ -42,8 +42,11 @@ namespace Shooter
 
     public override void HandleAction(ActionEvent actionEvent)
     {
-      HandleMovement(actionEvent);
-      HandleFire(actionEvent);
+      if(!paused)
+      {
+        HandleMovement(actionEvent);
+        HandleFire(actionEvent);
+      }
     }
 
     private void HandleFire(ActionEvent actionEvent)
