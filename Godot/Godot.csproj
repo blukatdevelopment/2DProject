@@ -55,6 +55,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(ProjectDir)/.mono/assemblies/Newtonsoft.Json.dll</HintPath>
+    <Private>False</Private>
+    </Reference>
   </ItemGroup>
     <ItemGroup>
     <Compile Include="src/Actor/Actor.cs" />
@@ -68,11 +72,13 @@
     <Compile Include="src/Dialogue/DialogueOption.cs" />
     <Compile Include="src/Dialogue/DialogueTree.cs" />
     <Compile Include="src/Enums/ActionEnum.cs" />
+    <Compile Include="src/Enums/DirectionEnum.cs" />
     <Compile Include="src/Enums/GameTypeEnum.cs" />
     <Compile Include="src/Enums/InputModeEnum.cs" />
     <Compile Include="src/Global/Game.cs" />
     <Compile Include="src/Global/GameState.cs" />
     <Compile Include="src/Global/Session.cs" />
+    <Compile Include="src/Global/Utility.cs" />
     <Compile Include="src/Input/ActionEvent.cs" />
     <Compile Include="src/Input/IActionSubscriber.cs" />
     <Compile Include="src/Input/InputState.cs" />
@@ -83,6 +89,13 @@
     <Compile Include="src/Shooter/Ship.cs" />
     <Compile Include="src/Shooter/ShooterConstants.cs" />
     <Compile Include="src/Shooter/ShooterGame.cs" />
+    <Compile Include="src/Walker/DialogueObject.cs" />
+    <Compile Include="src/Walker/IInteractive.cs" />
+    <Compile Include="src/Walker/TeleportationObject.cs" />
+    <Compile Include="src/Walker/WalkerActor.cs" />
+    <Compile Include="src/Walker/WalkerConstants.cs" />
+    <Compile Include="src/Walker/WalkerGame.cs" />
+    <Compile Include="src/Walker/WalkerState.cs" />
     <Compile Include="Properties/AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

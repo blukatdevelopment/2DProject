@@ -5,6 +5,7 @@ namespace Actor
   using Constants;
   using Input;
   using Enums;
+  using Global;
 
   public class Actor : KinematicBody2D, IActionSubscriber
   {
@@ -16,9 +17,11 @@ namespace Actor
     protected bool paused;
     public Vector2 movement;
     public float movementSpeed;
+    public DirectionEnum direction;
 
     public Actor()
     {
+      actionEventsQueue = new List<ActionEvent>();
     }
 
     public Actor(Vector2 position, bool enableCamera = false)
@@ -76,6 +79,7 @@ namespace Actor
       if(!paused)
       {
         Move(movement);
+        UpdateDirection(movement);
       }
     }
 
@@ -139,6 +143,15 @@ namespace Actor
       if(collision != null && collision.Collider != null)
       {
         OnCollide(collision);
+      }
+    }
+
+    private void UpdateDirection(Vector2 movement)
+    {
+      DirectionEnum direction = Utility.DirectionFromVector2(movement);
+      if(direction != DirectionEnum.None)
+      {
+        this.direction = direction;
       }
     }
   }

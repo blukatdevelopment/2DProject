@@ -4,6 +4,7 @@ namespace Constants
   using Enums;
   using Godot;
   using Shooter;
+  using Walker;
   using Input;
 
   public class GameConstants
@@ -21,6 +22,8 @@ namespace Constants
       {
         case GameTypeEnum.Shooter:
           return new ShooterGame(state);
+        case GameTypeEnum.Walker:
+          return new WalkerGame(state);
         default:
           GD.Print("NewGameByType: invalid gameType: " + gameType);
           return null;

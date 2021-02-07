@@ -4,6 +4,7 @@ namespace Global {
   using Input;
   using System.Collections.Generic;
   using Dialogue;
+  using Walker;
 
   /*
     Yup, it's a model that holds shared data used by the Game class.
@@ -15,5 +16,12 @@ namespace Global {
   public class GameState : Node2D
   {
     public int lives = 1;
+    public WalkerState walkerState;
+    public Vector2 dialoguePosition;
+
+    public GameState()
+    {
+      walkerState = new WalkerState();
+    }
   }
 }

@@ -55,6 +55,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(ProjectDir)/.mono/assemblies/Newtonsoft.Json.dll</HintPath>
+    <Private>False</Private>
+    </Reference>
   </ItemGroup>
     <REFERENCESGOHERE>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

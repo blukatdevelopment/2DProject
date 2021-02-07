@@ -64,6 +64,7 @@ namespace Dialogue
         ShowDialogue(false);
         return;
       }
+      Reposition(Session.session.state.dialoguePosition);
       messageLabel.Text = node.message.displayText;
       ShowDialogue(true);
       if(node.HasNoOptions())
@@ -86,6 +87,21 @@ namespace Dialogue
       Button button = optionButtons[option.optionId];
       button.Text = option.displayText;
       button.Visible = true;
+    }
+
+    public void Reposition(Vector2 position)
+    {
+      Vector2 oneTenthRes = GameConstants.GameResolution()/10f;
+
+      messageLabel.RectGlobalPosition = position;
+      messagePanel.RectGlobalPosition = position;
+      for(int i = 0; i < 4; i++)
+      {
+        Button button = optionButtons[i];
+        button.RectGlobalPosition = new Vector2(
+          position.x, 
+          position.y + oneTenthRes.y * (i+1));
+      }
     }
 
     public void ShowDialogue(bool show)

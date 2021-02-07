@@ -72,28 +72,6 @@ namespace Shooter
       return result["collider"];
     }
 
-    private object RayCast(Vector2 start, Vector2 end, List<object> ignored)
-    {
-      Godot.Collections.Array array = new Godot.Collections.Array();
-      foreach(object obj in ignored)
-      {
-        array.Add(obj);
-      }
-
-      Physics2DDirectSpaceState spaceState = world.DirectSpaceState;
-      var result = spaceState.IntersectRay(start, end, array);
-      object ret = null;
-      try
-      {
-        ret = result["collider"];
-      }
-      catch(Exception e)
-      {
-        // FIXME: Godot.Collections.Dictionary.ContainsKey is currently broken in this version of godot. Try it out later.
-      }
-      return ret;
-    }
-
     private void QueueAction(Ship ship, ActionEnum action)
     {
       ship.QueueActions(new List<ActionEvent>{ new ActionEvent(action) });

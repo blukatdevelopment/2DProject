@@ -24,7 +24,7 @@ namespace Shooter
     {
     }
 
-    public ShooterGame(GameState state)
+    public ShooterGame(GameState state) : base()
     {
       this.gameState = state;
       players = new List<Actor>();
@@ -108,14 +108,14 @@ namespace Shooter
       float y = GameConstants.GameResolution().y - ShooterConstants.ShipSize().y;
       Actor player = new Ship(new Vector2(x, y), false, ShooterConstants.Up(), this);
       AddPlayer(player);
-      this.AddChild(player);
+      AddChild(player);
     }
 
     public void SpawnEnemy(Vector2 position)
     {
       Actor enemy = new Ship(position, false, ShooterConstants.Down(), this);
       enemyAI.AddEnemy(enemy as Ship);
-      this.AddChild(enemy);
+      AddChild(enemy);
     }
 
     private void InitCamera()
@@ -155,7 +155,6 @@ namespace Shooter
       }
       else
       {
-        Session.session.Dialogue(DialogueConstants.DebugDialogueTree());
         score++;
       }
     }

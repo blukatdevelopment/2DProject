@@ -11,6 +11,7 @@ namespace Enums
     MoveLeftStart,
     MoveLeftEnd,
     FireStart,
-    FireEnd
+    FireEnd,
+    Interact
   }
 }

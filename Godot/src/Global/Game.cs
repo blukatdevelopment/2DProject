@@ -17,6 +17,7 @@ namespace Global
 
     public Game()
     {
+      players = new List<Actor>();
     }
 
     public Game(GameState gameState, InputState inputState)

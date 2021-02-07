@@ -8,6 +8,7 @@ namespace Global {
   using Constants;
   using Dialogue;
   using System.Collections.Generic;
+  using Walker; // TODO: Remove
 
   public class Session : Node2D
   {
@@ -29,7 +30,9 @@ namespace Global {
       dialogue = new DialogueManager();
       AddChild(dialogue);
       
-      StartNewGame(GameTypeEnum.Shooter);
+      WalkerGame.LoadMap("res://Scenes/Walker/Demo/First.tscn", new Vector2());
+      Utility.Dump("Cool", state);
+      //StartNewGame(GameTypeEnum.Walker);
     }
 
     private void EnforceSingleton()
