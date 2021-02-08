@@ -1,0 +1,47 @@
+{
+  "nodes": [
+    {
+      "id": 0,
+      "message": {
+        "speaker": null,
+        "displayText": "Great job, Skippy!"
+      },
+      "options": [
+        {
+          "optionId": 0,
+          "displayText": "Thanks",
+          "destinationNode": 1
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "message": {
+        "speaker": null,
+        "displayText": "Keep up the good work!"
+      },
+      "options": [
+        {
+          "optionId": 0,
+          "displayText": "[Continue]",
+          "destinationNode": 2
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "message": {
+        "speaker": null,
+        "displayText": "No, really, we could use more robots like you."
+      },
+      "options": [
+        {
+          "optionId": 0,
+          "displayText": "[Continue]",
+          "destinationNode": -1
+        }
+      ]
+    }
+  ],
+  "activeNode": 0
+}

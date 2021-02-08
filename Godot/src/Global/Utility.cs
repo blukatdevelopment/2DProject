@@ -4,6 +4,7 @@ namespace Global
   using Godot;
   using System.Collections.Generic;
   using System;
+  using System.IO;
   using Newtonsoft.Json;
 
   public class Utility
@@ -115,5 +116,18 @@ namespace Global
       return JsonConvert.DeserializeObject<T>(json);
     }
 
+    public static T LoadJsonFile<T>(string filePath){
+      if(!System.IO.File.Exists(filePath)){
+        throw new Exception("File " + filePath + " does not exist.");
+      }
+
+      string json = System.IO.File.ReadAllText(filePath);
+      return FromJson<T>(json);
     }
+
+    public static void SaveJsonFile(object data, string fileName) {
+      string json = ToJson(data);
+      System.IO.File.WriteAllText(fileName, json);
+    }
+  }
 }

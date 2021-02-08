@@ -30,9 +30,9 @@ namespace Global {
       dialogue = new DialogueManager();
       AddChild(dialogue);
       
-      WalkerGame.LoadMap("res://Scenes/Walker/Demo/First.tscn", new Vector2());
-      Utility.Dump("Cool", state);
-      //StartNewGame(GameTypeEnum.Walker);
+      //WalkerGame.LoadMap("res://Scenes/Walker/Demo/First.tscn", new Vector2());
+      
+      StartNewGame(GameTypeEnum.Shooter);
     }
 
     private void EnforceSingleton()

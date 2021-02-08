@@ -4,7 +4,7 @@ namespace Constants
 
   public class ActorConstants
   {
-    public const string ActorTexture = "res://Textures/Actors/Actor.jpg";
+    public const string ActorTexture = "res://Assets/Demo/Textures/Actor.jpg";
 
     public const float MovementSpeed = 10f;
 

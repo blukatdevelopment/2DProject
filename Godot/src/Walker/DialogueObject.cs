@@ -17,8 +17,7 @@ namespace Walker
     public void Interact()
     {
       GD.Print("Display dialogue tree:" + DialogueTree);
-      Session.session.Dialogue(DialogueConstants.DebugDialogueTree());
-      // FIXME: Actually load a dialogue tree at specified node
+      Session.session.dialogue.Activate(DialogueTree, DialogueNodeId);
     }
   }
 }

@@ -7,6 +7,7 @@ namespace Shooter
   using Dialogue;
   using System.Collections.Generic;
   using Constants;
+  using System;
 
   /*
     Enemies move downward from the top of the screen.

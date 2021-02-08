@@ -4,6 +4,7 @@ namespace Dialogue
   using Godot;
   using Global;
   using Constants;
+  using System;
 
   public class DialogueManager : Node2D
   {
@@ -49,6 +50,12 @@ namespace Dialogue
       }
 
       ShowDialogue(false);
+    }
+
+    public void Activate(string fileName, int activeNode = -1)
+    {
+      DialogueTree tree = Utility.LoadJsonFile<DialogueTree>(fileName);
+      Activate(tree, activeNode);
     }
 
     public void Activate(DialogueTree tree, int activeNode = -1)
